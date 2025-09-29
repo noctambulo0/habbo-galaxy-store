@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vendedores - Galaxy Store Habbo</title>
+<link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+<style>
+  body {
+    margin:0;
+    font-family: Inter, sans-serif;
+    background:#0f0f14;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    padding:32px;
+    overflow:hidden;
+  }
+  canvas#bg{
+    position:fixed;
+    top:0; left:0; width:100%; height:100%; z-index:-1;
+  }
+  .container{
+    max-width:1000px;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    align-items:center;
+    max-height:90vh;
+    overflow-y:auto; /* Scroll vertical si excede la altura */
+    padding-right:10px; /* espacio para scroll */
+  }
+  .user-card{
+    width:90%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    border-radius:12px;
+    padding:15px;
+    background:linear-gradient(135deg,#12121a,#1c1c26);
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+    transition:0.5s;
+  }
+  .user-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 30px rgba(93,225,255,0.7);
+  }
+  .user-card img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    margin-bottom:10px;
+    border:2px solid #fff;
+    transition:0.5s;
+  }
+  .user-card img:hover{
+    transform:scale(1.1) rotate(5deg);
+    box-shadow:0 0 15px #5de1ff;
+  }
+  .user-card h2{
+    margin:0 0 6px 0;
+    font-size:20px;
+    animation:glowText 2s infinite alternate;
+  }
+  .user-card p{
+    font-size:13px;
+    line-height:1.4;
+    text-align:center;
+    max-width:500px;
+  }
+  .catapre{
+    background: linear-gradient(135deg, #7c5cff, #5de1ff, #ff5ccf);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom:2px solid rgba(124,92,255,0.5);
+    padding-bottom:3px;
+  }
+  .luci{
+    background: linear-gradient(135deg, #ff3c3c, #ff9900, #990000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom:2px solid rgba(255,60,60,0.5);
+    padding-bottom:3px;
+  }
+  .user-images{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    margin-top:10px;
+  }
+  .user-images img{
+    width:100px;
+    height:70px;
+    border-radius:8px;
+    object-fit:cover;
+    border:1px solid rgba(255,255,255,0.1);
+    transition:0.4s;
+  }
+  .user-images img:hover{
+    transform:scale(1.05) rotate(-2deg);
+    box-shadow:0 0 10px rgba(93,225,255,0.7);
+  }
+  .telegram-btn{
+    margin-top:10px;
+    padding:8px 18px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(90deg,#5de1ff,#7c5cff);
+    color:#071026;
+    font-weight:700;
+    cursor:pointer;
+    text-decoration:none;
+    transition:0.3s;
+  }
+  .telegram-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px #5de1ff;
+  }
+  @keyframes glowText{
+    0%{text-shadow:0 0 5px #5de1ff,0 0 10px #7c5cff;}
+    50%{text-shadow:0 0 10px #ff5ccf,0 0 20px #7c5cff;}
+    100%{text-shadow:0 0 5px #5de1ff,0 0 10px #7c5cff;}
+  }
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="container">
+
+  <div class="user-card">
+    <img src="https://i.pinimg.com/736x/93/3d/28/933d28eb7eb0ee977295407b9103454c.jpg" alt="Catapre Icon">
+    <h2 class="catapre">Catapre</h2>
+    <p>Catapre es un vendedor confiable de lingotes de Habbo con años de experiencia. Siempre entrega de manera rápida y segura. Especialista en paquetes medianos y grandes, con atención personalizada.</p>
+    <div class="user-images">
+      <img src="https://i.pinimg.com/736x/13/bf/e9/13bfe928ed9c62aa8b9ee7612a41c2f6.jpg" alt="Lingotes">
+      <img src="https://i.pinimg.com/1200x/10/5b/7f/105b7fbcbf52dd0680284c258b68b7f8.jpg" alt="Sala Habbo">
+      <img src="https://i.pinimg.com/736x/b5/97/50/b597501e8bb28e32a0d43156b1118e80.jpg" alt="Muebles Habbo">
+    </div>
+    <a href="https://t.me/catapre" target="_blank" class="telegram-btn">Contactar a Catapre</a>
+    <a href="index.html" class="telegram-btn">menu principal</a>
+  </div>
+
+  <div class="user-card">
+    <img src="https://i.ibb.co/7Jb8B0Z/luci-icon.png" alt="Luci Icon">
+    <h2 class="luci">Luci</h2>
+    <p>Luci ofrece una experiencia única y veloz en la venta de lingotes de Habbo. Con colores intensos y vibrantes, destaca en paquetes pequeños y personalizados, asegurando la satisfacción de cada usuario.</p>
+    <div class="user-images">
+      <img src="https://i.ibb.co/GxYdH0K/habbo-gold.png" alt="Lingotes">
+      <img src="https://i.ibb.co/hC5NnZT/habbo-room.png" alt="Sala Habbo">
+      <img src="https://i.ibb.co/7X0vZJr/habbo-furniture.png" alt="Muebles Habbo">
+    </div>
+    <a href="https://t.me/luci" target="_blank" class="telegram-btn">Contactar a Luci</a>
+    <a href="index.html" class="telegram-btn">menu principal</a>
+  </div>
+
+</div>
+
+<script>
+const bg = document.getElementById('bg');
+const ctx = bg.getContext('2d');
+let particles=[];
+function resize(){bg.width=window.innerWidth;bg.height=window.innerHeight;}
+window.addEventListener('resize',resize);
+resize();
+for(let i=0;i<60;i++){
+  particles.push({x:Math.random()*bg.width,y:Math.random()*bg.height,r:Math.random()*3+1,dx:(Math.random()-0.5)*1,dy:(Math.random()-0.5)*1});
+}
+function animate(){
+  ctx.clearRect(0,0,bg.width,bg.height);
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(93,225,255,0.7)';
+    ctx.fill();
+    p.x+=p.dx; p.y+=p.dy;
+    if(p.x<0||p.x>bg.width)p.dx*=-1;
+    if(p.y<0||p.y>bg.height)p.dy*=-1;
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>

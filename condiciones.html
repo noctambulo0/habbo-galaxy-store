@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Condiciones - Galaxy Sotre Habbo</title>
+<link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+<style>
+  body {
+    margin:0;
+    font-family: Inter, sans-serif;
+    background:#0f0f14;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    padding:32px;
+  }
+  .container{
+    max-width:900px;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    align-items:center;
+  }
+  .card{
+    background:linear-gradient(135deg,#12121a,#1c1c26);
+    border-radius:14px;
+    padding:20px;
+    width:100%;
+    max-width:800px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+    cursor:pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover{
+    transform: translateY(-10px);
+    box-shadow:0 0 30px rgba(93,225,255,0.6);
+  }
+  h2{
+    margin:0 0 10px 0;
+    font-size:22px;
+  }
+  p{
+    font-size:14px;
+    line-height:1.5;
+  }
+  .lang-btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#5de1ff,#7c5cff);
+    color:#071026;
+    font-weight:700;
+    cursor:pointer;
+    margin-bottom:20px;
+  }
+  .back-btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#ff5c5c,#ff9900);
+    color:#071026;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <button class="lang-btn" onclick="toggleLang()">Cambiar idioma / Change Language</button>
+
+  <div class="card" data-es="1. El pago se realiza solo en USDT. Asegúrate de enviar a la dirección correcta." data-en="1. Payment is only accepted in USDT. Make sure to send to the correct address.">1. El pago se realiza solo en USDT. Asegúrate de enviar a la dirección correcta.</div>
+  <div class="card" data-es="2. La entrega de lingotes se realiza después de confirmar el pago." data-en="2. Delivery of ingots occurs after payment confirmation.">2. La entrega de lingotes se realiza después de confirmar el pago.</div>
+  <div class="card" data-es="3. No nos hacemos responsables por errores en el nick de Habbo proporcionado." data-en="3. We are not responsible for errors in the provided Habbo username.">3. No nos hacemos responsables por errores en el nick de Habbo proporcionado.</div>
+  <div class="card" data-es="4. Todas las ventas son finales y no reembolsables una vez confirmado el pago." data-en="4. All sales are final and non-refundable once payment is confirmed.">4. Todas las ventas son finales y no reembolsables una vez confirmado el pago.</div>
+
+  <button class="back-btn" onclick="window.location.href='index.html'">Volver al inicio</button>
+</div>
+
+<script>
+  let lang = 'es';
+  function toggleLang(){
+    lang = lang === 'es' ? 'en' : 'es';
+    document.querySelectorAll('.card').forEach(card=>{
+      card.textContent = card.getAttribute('data-' + lang);
+    });
+  }
+</script>
+</body>
+</html>

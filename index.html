@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Galaxy store Habbo</title>
+  <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+  <style>
+    body{
+      margin:0;
+      font-family: Inter, sans-serif;
+      background:#0f0f14;
+      color:#e6eef8;
+      display:flex;
+      justify-content:center;
+      padding:32px;
+      overflow:hidden;
+    }
+    canvas#bg{
+      position:fixed;
+      top:0;left:0;width:100%;height:100%;z-index:-1;
+    }
+    .container{max-width:900px;width:100%;background:#12121a;padding:24px;border-radius:14px;display:grid;grid-template-columns:80px 1fr 200px;gap:20px;align-items:flex-start;}
+    h1{text-align:center;margin:0 0 20px 0;}
+    label{display:block;margin-top:14px;font-weight:600;}
+    input{width:100%;padding:10px;border-radius:8px;border:none;margin-top:6px;background:#1c1c26;color:#fff;transition:0.3s;}
+    input:focus{outline:none;box-shadow:0 0 10px #5de1ff;}
+    button{margin-top:20px;width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(90deg,#7c5cff,#5de1ff);color:#071026;font-weight:700;cursor:pointer;transition:0.3s;}
+    button:hover{transform:translateY(-2px);box-shadow:0 0 15px #5de1ff;}
+    .order{margin-top:20px;padding:16px;border-radius:10px;background:#1c1c26;display:none;text-align:center;box-shadow:0 0 15px rgba(0,0,0,0.5);}
+    .order img{max-width:100%;margin-top:12px;border-radius:10px;transition:0.3s;}
+    .order img:hover{transform:scale(1.05);}
+    .contact{margin-top:20px;font-size:14px;text-align:center;color:#9aa0ac;}
+    .sidebar{display:flex;flex-direction:column;align-items:center;gap:20px;}
+    .sidebar img{width:40px;height:40px;cursor:pointer;transition:0.3s;}
+    .sidebar img:hover{transform:scale(1.1);}
+    .right-images{display:flex;flex-direction:column;gap:20px;}
+    .right-images img{width:100%;border-radius:12px;transition:0.3s;}
+    .right-images img:hover{transform:scale(1.03);}
+    .nav-buttons{display:flex;gap:10px;margin-top:20px;}
+    .nav-buttons button{flex:1;background:linear-gradient(90deg,#5de1ff,#7c5cff);}
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <div class="container">
+    <div class="sidebar">
+      <a href="https://twitter.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+      <a href="https:t.me/GalaxyStoreHabbo" target="_blank"><img src="https://i.pinimg.com/736x/99/11/e3/9911e35de12022d64c8cb3c5386c7f96.jpg" alt="Telegram"></a>
+    </div>
+
+    <div>
+      <h1>Comprar Lingotes</h1>
+      <label for="nick">Nick de Habbo (PRESTE ATENCION AL NICK)</label>
+      <input id="nick" placeholder="TuNick123" />
+
+      <label for="qty">Cantidad de lingotes (5 a 25)</label>
+      <input id="qty" type="number" min="5" max="25" value="5" />
+
+      <button onclick="generarOrden()">Generar orden</button>
+
+      <div class="order" id="orderBox">
+        <h2>✅ Orden generada</h2>
+        <p id="orderText"></p>
+        <canvas id="orderCanvas" width="500" height="250"></canvas>
+        <button onclick="descargarOrden()" style="margin-top:10px;padding:10px;border:none;border-radius:8px;background:linear-gradient(90deg,#ff5cff,#ffae5c);color:#071026;font-weight:700;cursor:pointer;">Descargar PNG</button>
+      </div>
+
+      <div class="nav-buttons">
+        <button onclick="window.location.href='vendedores.html'">Vendedores</button>
+        <button onclick="window.location.href='Condiciones.html'">Condiciones</button>
+      </div>
+
+      <div class="contact">
+        <p>Para completar la compra, contáctanos en <a href="https://t.me/catapre" target="_blank">t.me/catapre</a></p>
+        <p>Pagos solo en <strong>USDT</strong>.</p>
+      </div>
+    </div>
+
+    <div class="right-images">
+      <img src="https://i.pinimg.com/736x/c3/f2/f0/c3f2f0eda5f81cc678837245af7ddc04.jpg" alt="Lingotes Habbo">
+      <img src="https://i.pinimg.com/736x/3b/73/f7/3b73f7f9681307053197118c79f88c77.jpg" alt="Sala Habbo">
+    </div>
+  </div>
+
+  <script>
+    function generarOrden(){
+      const nick = document.getElementById('nick').value.trim();
+      const qty = parseInt(document.getElementById('qty').value);
+      if(!nick){alert('Ingresa tu nick de Habbo.');return;}
+      if(qty<5 || qty>30){alert('Solo puedes pedir entre 5 y 25 lingotes.');return;}
+
+      const texto = `Usuario: ${nick} | Cantidad: ${qty} lingotes`;
+      document.getElementById('orderText').textContent = texto;
+      document.getElementById('orderBox').style.display='block';
+
+      const canvas = document.getElementById('orderCanvas');
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#12121a';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = '#7c5cff';
+      ctx.font = '20px Inter';
+      ctx.fillText('Orden de compra - Habbo Lingotes', 20, 50);
+      ctx.fillStyle = '#fff';
+      ctx.font = '18px Inter';
+      ctx.fillText(`Usuario: ${nick}`, 20, 110);
+      ctx.fillText(`Cantidad: ${qty} lingotes`, 20, 150);
+      ctx.fillStyle = '#5de1ff';
+      ctx.font = '16px Inter';
+      ctx.fillText('Contacto: t.me/catapre', 20, 200);
+    }
+
+    function descargarOrden(){
+      const canvas = document.getElementById('orderCanvas');
+      const link = document.createElement('a');
+      link.download = 'orden_habbo.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+
+    const bg = document.getElementById('bg');
+    const ctxBg = bg.getContext('2d');
+    let particles = [];
+
+    function resize(){bg.width=window.innerWidth;bg.height=window.innerHeight;}
+    window.addEventListener('resize',resize);resize();
+
+    for(let i=0;i<80;i++){
+      particles.push({x:Math.random()*bg.width,y:Math.random()*bg.height,r:Math.random()*3+1,dx:(Math.random()-0.5)*1,dy:(Math.random()-0.5)*1});
+    }
+
+    function animate(){
+      ctxBg.clearRect(0,0,bg.width,bg.height);
+      particles.forEach(p=>{
+        ctxBg.beginPath();
+        ctxBg.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctxBg.fillStyle = `rgba(93,225,255,0.7)`;
+        ctxBg.fill();
+        p.x+=p.dx;p.y+=p.dy;
+        if(p.x<0||p.x>bg.width)p.dx*=-1;
+        if(p.y<0||p.y>bg.height)p.dy*=-1;
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
